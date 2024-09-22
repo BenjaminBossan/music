@@ -31,11 +31,11 @@ let startTime;
 let timerInterval;
 let gameStarted = false;
 let currentNote = null;
-let totalNotes = 20;
+let totalNotes = 10;    // default number of notes per round
 let playSound = true;
 let answerRecords = []; // Array to store answer records
 let questionStartTime;
-let maxFret = 4; // Default maximum fret
+let maxFret = 4;        // Default maximum fret
 
 // Audio context for sound playback
 let audioCtx;
@@ -418,7 +418,7 @@ function playNoteSound(note) {
     if (!frequency) return;
 
     const now = audioCtx.currentTime;
-    const duration = 1; // Total duration in seconds
+    const duration = 1.5; // Total duration in seconds
     const fadeTime = 0.05; // Fade in/out time in seconds
 
     const oscillator = audioCtx.createOscillator();
