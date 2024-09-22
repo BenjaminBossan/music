@@ -7,7 +7,7 @@ import time
 CHORDS = ["A", "Am", "B7", "C", "D", "D7", "Dm", "E", "E6", "E7", "Em", "G"]
 RHYTHMS = [1, 2, 4, 8]
 LOUDNESS = ["p", "mf", "f"]
-FREQ = 120  # bpm
+FREQ = 60  # bpm
 PROB_CHORD_CHANGE = 0.2
 BAR = "1 & 2 & 3 & 4 &"
 
@@ -23,26 +23,29 @@ def random_chord():
             if chord != prev_chord:
                 prev_chord = chord
                 print_to_console(f"{chord}\n\n\n\nCtrl+C to exit")
-                time.sleep(2)
+                # sleep for 4 beats
+                time.sleep(4 / FREQ * 60)
         else:
             chord = prev_chord
 
         print_to_console(f"{chord} {rhythm}/{rhythm} {loudness}")
-        time.sleep(0.5)
+        # sleep for 1 beat
+        time.sleep(1 / FREQ * 60)
 
         for i in range(8):
             should_play = i in range(0, 8, (8 // rhythm))
             symbol = "^" if should_play else "-"
             indicator = i * "  " + symbol
             lines = [
-                f"{chord} {rhythm}/{rhythm}",
+                f"{chord} {rhythm}/{rhythm} {loudness}",
                 BAR,
                 indicator,
                 "",
                 "Ctrl+C to exit",
             ]
             print_to_console("\n".join(lines))
-            time.sleep(1 / FREQ * 60)
+            # sleep for 1/2 beat
+            time.sleep(0.5 / FREQ * 60)
 
 
 def print_to_console(text):
