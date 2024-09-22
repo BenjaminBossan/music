@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guitar Note Identifier</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Guitar Note Identifier</h1>
+    <div id="game">
+        <div id="fretboard-container">
+            <div id="fretboard">
+                <!-- Strings and labels will be generated dynamically -->
+            </div>
+        </div>
+        <div id="piano-container">
+            <div id="piano"></div>
+        </div>
+        <div id="status">
+            <p>
+                Number of Notes to Identify: 
+                <input type="number" id="num-notes" value="20" min="1" max="100" />
+            </p>
+            <p>
+                Highest Fret: 
+                <input type="number" id="max-fret" value="4" min="1" max="15" />
+            </p>
+            <p>
+                Play Sound: 
+                <button id="toggle-sound">On</button>
+            </p>
+            <p>Time: <span id="time">0.0</span>s</p>
+            <p>Correct Answers: <span id="score">0</span>/<span id="total-notes">20</span></p>
+            <button id="start">Start</button>
+            <button id="stop" disabled>Stop</button>
+        </div>
+        <div id="notification"></div>
+        <div id="record">
+            <h2>Answer Record</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Displayed Note</th>
+                        <th>Your Answer</th>
+                        <th>Correct Note</th>
+                        <th>Time Taken (s)</th>
+                    </tr>
+                </thead>
+                <tbody id="record-body">
+                    <!-- Records will be added here dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
