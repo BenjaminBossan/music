@@ -103,22 +103,15 @@ function stopGame() {
     clearFretboardMarkers();
 }
 
-// Update the timer display
 function updateTimer() {
     const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
     document.getElementById('time').textContent = elapsed;
 }
 
-// Generate the fretboard with frets
 function generateFretboard() {
     const fretboard = document.getElementById('fretboard');
     fretboard.innerHTML = '';
 
-    // Adjust fretboard width based on max fret
-    const fretboardWidth = 600; // Fixed width for consistent layout
-    fretboard.style.width = fretboardWidth + 'px';
-
-    // Calculate fret positions using standard fret spacing
     const fretPositions = calculateFretPositions(maxFret);
 
     // Add fret lines
@@ -129,8 +122,7 @@ function generateFretboard() {
         fretboard.appendChild(fretLine);
     }
 
-    // Add strings and labels
-    for (let string = 0; string < 6; string++) {
+    for (let string = 5; string >= 0; string--) {
         // String
         const stringDiv = document.createElement('div');
         stringDiv.classList.add('string');
@@ -142,7 +134,6 @@ function generateFretboard() {
         labelDiv.classList.add('string-label');
         labelDiv.dataset.string = string;
 
-        // Corrected line for string labels
         if (string === 5) {
             labelDiv.textContent = 'e'; // High E string represented as lowercase 'e'
         } else {
@@ -152,9 +143,9 @@ function generateFretboard() {
         fretboard.appendChild(labelDiv);
     }
 
-    // Adjust positions based on fretboard layout
     adjustFretboardLayout();
 }
+
 
 function calculateFretPositions(maxFret) {
     const fretPositions = [];
@@ -280,7 +271,6 @@ function onPianoKeyClick(e) {
     // Record the answer
     answerRecords.push({
         number: answerRecords.length + 1,
-        displayedNote: currentNote,
         yourAnswer: selectedNote,
         correctNote: correctNote,
         timeTaken: timeTaken,
@@ -355,10 +345,6 @@ function updateRecordTable() {
         numberCell.textContent = record.number;
         row.appendChild(numberCell);
 
-        const displayedNoteCell = document.createElement('td');
-        displayedNoteCell.textContent = record.displayedNote;
-        row.appendChild(displayedNoteCell);
-
         const yourAnswerCell = document.createElement('td');
         yourAnswerCell.textContent = record.yourAnswer;
         row.appendChild(yourAnswerCell);
@@ -374,6 +360,7 @@ function updateRecordTable() {
         recordBody.appendChild(row);
     });
 }
+
 
 // Calculate the visual position of the fret marker
 function getFretPosition(fret) {
