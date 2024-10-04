@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Interval Identifier</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Interval Identifier</h1>
+
+<div id="container">
+    <div id="settings">
+        <fieldset>
+            <legend>Difficulty:</legend>
+            <label>
+                <input type="radio" name="difficulty" value="easy" checked> Easy
+                <span class="tooltip">?
+                    <span class="tooltiptext">Easy: Minor Third, Major Third, Perfect Fifth, and Octave. First note is lower.</span>
+                </span>
+            </label>
+            <label>
+                <input type="radio" name="difficulty" value="medium"> Medium
+                <span class="tooltip">?
+                    <span class="tooltiptext">Medium: All intervals up to an octave. First note is lower.</span>
+                </span>
+            </label>
+            <label>
+                <input type="radio" name="difficulty" value="hard"> Hard
+                <span class="tooltip">?
+                    <span class="tooltiptext">Hard: All intervals up to an octave. First note can be lower or higher.</span>
+                </span>
+            </label>
+        </fieldset>
+
+        <div class="input-group">
+            <label for="rounds">Rounds:</label>
+            <input type="number" id="rounds" value="10" min="1" max="100">
+        </div>
+
+        <div class="input-group">
+            <label for="note-duration">Note Duration (ms):</label>
+            <input type="number" id="note-duration" value="750" min="100" max="3000">
+        </div>
+
+        <button id="start-button">Start Game</button>
+    </div>
+
+    <div id="game" style="display: none;">
+        <div id="game-controls">
+            <button id="stop-button">Stop Game</button>
+            <button id="restart-button">Restart Game</button>
+            <button id="replay-button">Replay Notes</button>
+        </div>
+
+        <div id="game-info">
+            <p>Time Elapsed: <span id="timer">0.00</span> seconds</p>
+            <p id="rounds-progress">Correct Answers: <span id="correct-answers">0</span> / <span id="total-rounds">10</span></p>
+        </div>
+
+        <div id="feedback"></div>
+
+        <div id="interval-options"></div>
+
+        <div id="round-history">
+            <h3>Round History:</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Attempt</th>
+                        <th>Note 1</th>
+                        <th>Note 2</th>
+                        <th>Your Choice</th>
+                        <th>Correct Interval</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody id="round-summary"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="results" style="display: none;">
+        <h2>Game Over!</h2>
+        <p>Total Time: <span id="total-time"></span> seconds</p>
+        <h3>Final Round Summary:</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Attempt</th>
+                    <th>Note 1</th>
+                    <th>Note 2</th>
+                    <th>Your Choice</th>
+                    <th>Correct Interval</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody id="final-round-summary"></tbody>
+        </table>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
