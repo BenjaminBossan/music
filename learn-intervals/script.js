@@ -460,6 +460,7 @@ Synth.loadSoundProfile({
             attempt: gameData.attempts,
             notes: gameData.currentNotes.slice(),
             interval: gameData.currentIntervalName,
+            semitones: gameData.currentInterval,
             playerChoice: guessedIntervalName,
             correct: correct
         });
@@ -482,6 +483,7 @@ Synth.loadSoundProfile({
                         '<td>' + lastAttempt.notes[1] + '</td>' +
                         '<td>' + lastAttempt.playerChoice + '</td>' +
                         '<td>' + lastAttempt.interval + '</td>' +
+                        '<td>' + lastAttempt.semitones + '</td>' +
                         '<td>' + (lastAttempt.correct ? 'Correct' : 'Incorrect') + '</td>';
         roundSummaryBody.insertBefore(row, roundSummaryBody.firstChild);
     }
@@ -503,6 +505,7 @@ Synth.loadSoundProfile({
                             '<td>' + attempt.notes[1] + '</td>' +
                             '<td>' + attempt.playerChoice + '</td>' +
                             '<td>' + attempt.interval + '</td>' +
+                            '<td>' + attempt.semitones + '</td>' +
                             '<td>' + (attempt.correct ? 'Correct' : 'Incorrect') + '</td>';
             finalRoundSummaryBody.insertBefore(row, finalRoundSummaryBody.firstChild);
         });
