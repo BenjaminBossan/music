@@ -115,6 +115,14 @@ th, td {
     text-align: center;
 }
 
+.row-correct {
+    background-color: #d4edda; /* Light green */
+}
+
+.row-incorrect {
+    background-color: #f8d7da; /* Light red */
+}
+
 .tooltip {
     position: relative;
     display: inline-block;

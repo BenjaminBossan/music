@@ -485,12 +485,16 @@ Synth.loadSoundProfile({
 
         var row = document.createElement('tr');
         row.innerHTML = '<td>' + lastAttempt.attempt + '</td>' +
-                        '<td>' + lastAttempt.notes[0] + '</td>' +
-                        '<td>' + lastAttempt.notes[1] + '</td>' +
-                        '<td>' + lastAttempt.playerChoice + '</td>' +
-                        '<td>' + lastAttempt.interval + '</td>' +
-                        '<td>' + lastAttempt.semitones + '</td>' +
-                        '<td>' + (lastAttempt.correct ? 'Correct' : 'Incorrect') + '</td>';
+            '<td>' + lastAttempt.notes[0] + '</td>' +
+            '<td>' + lastAttempt.notes[1] + '</td>' +
+            '<td>' + lastAttempt.playerChoice + '</td>' +
+            '<td>' + lastAttempt.interval + '</td>' +
+            '<td>' + lastAttempt.semitones + '</td>' +
+            '<td>' + (lastAttempt.correct ? 'Correct' : 'Incorrect') + '</td>';
+
+        // Add class based on correctness
+        row.className = lastAttempt.correct ? 'row-correct' : 'row-incorrect';
+
         roundSummaryBody.insertBefore(row, roundSummaryBody.firstChild);
     }
 
@@ -507,12 +511,16 @@ Synth.loadSoundProfile({
         gameData.roundHistory.forEach(function(attempt) {
             var row = document.createElement('tr');
             row.innerHTML = '<td>' + attempt.attempt + '</td>' +
-                            '<td>' + attempt.notes[0] + '</td>' +
-                            '<td>' + attempt.notes[1] + '</td>' +
-                            '<td>' + attempt.playerChoice + '</td>' +
-                            '<td>' + attempt.interval + '</td>' +
-                            '<td>' + attempt.semitones + '</td>' +
-                            '<td>' + (attempt.correct ? 'Correct' : 'Incorrect') + '</td>';
+                '<td>' + attempt.notes[0] + '</td>' +
+                '<td>' + attempt.notes[1] + '</td>' +
+                '<td>' + attempt.playerChoice + '</td>' +
+                '<td>' + attempt.interval + '</td>' +
+                '<td>' + attempt.semitones + '</td>' +
+                '<td>' + (attempt.correct ? 'Correct' : 'Incorrect') + '</td>';
+
+            // Add class based on correctness
+            row.className = attempt.correct ? 'row-correct' : 'row-incorrect';
+
             finalRoundSummaryBody.insertBefore(row, finalRoundSummaryBody.firstChild);
         });
     }
