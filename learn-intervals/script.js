@@ -387,8 +387,6 @@ Synth.loadSoundProfile({
     }
 
     function nextRound() {
-        feedbackDiv.innerHTML = '';
-
         // Generate random interval
         var intervals = gameData.intervals;
         var intervalNames = Object.keys(intervals);
@@ -447,9 +445,16 @@ Synth.loadSoundProfile({
         var guessedIntervalName = event.target.textContent;
         var correct = guessedInterval === gameData.currentInterval;
 
-        feedbackDiv.textContent = correct ? 'Correct!' : 'Incorrect.';
-        feedbackDiv.className = correct ? 'correct' : 'incorrect';
+        // Provide feedback
+        if (correct) {
+            feedbackDiv.textContent = 'Correct!';
+            feedbackDiv.className = 'correct';
+        } else {
+            feedbackDiv.textContent = 'Incorrect. The correct interval was ' + gameData.currentIntervalName + '.';
+            feedbackDiv.className = 'incorrect';
+        }
 
+        // Record the attempt
         gameData.attempts++;
         if (correct) {
             gameData.correctAnswers++;
@@ -467,10 +472,11 @@ Synth.loadSoundProfile({
 
         updateRoundSummary();
 
+        // Add a delay before proceeding to the next round or ending the game
         if (gameData.correctAnswers >= gameData.totalCorrectNeeded) {
-            endGame();
+            setTimeout(endGame, 1000);
         } else {
-            nextRound();
+            setTimeout(nextRound, 1000);
         }
     }
 
