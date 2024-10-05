@@ -337,7 +337,7 @@ function updateRecordTable() {
     const recordBody = document.getElementById('record-body');
     recordBody.innerHTML = ''; // Clear existing records
 
-    answerRecords.forEach(record => {
+    answerRecords.slice().reverse().forEach(record => {
         const row = document.createElement('tr');
         row.classList.add(record.isCorrect ? 'correct' : 'incorrect');
 
@@ -396,7 +396,7 @@ function showNotification(message, isError) {
     notification.style.color = isError ? 'red' : 'green';
     setTimeout(() => {
         notification.textContent = '';
-    }, 3000);
+    }, 5000);
 }
 
 // Play the sound of the note
