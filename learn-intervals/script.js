@@ -219,7 +219,6 @@ var Synth, AudioSynth, AudioSynthInstrument;
     AudioSynthInstance = new AudioSynth();
     Synth = AudioSynthInstance;
 }();
-// end synth code
 
 Synth.loadModulationFunction(
     function(i, sampleRate, frequency, x) { return 1 * Math.sin(2 * Math.PI * ((i / sampleRate) * frequency) + x); },
@@ -252,8 +251,8 @@ Synth.loadSoundProfile({
         );
     }
 });
+// end synth code
 
-// Main JavaScript code
 (function() {
     var startButton = document.getElementById('start-button');
     var stopButton = document.getElementById('stop-button');
@@ -284,7 +283,7 @@ Synth.loadSoundProfile({
         roundHistory: [],
         currentNotes: [],
         instrument: Synth.createInstrument('piano'),
-        isGameRunning: false // Flag to check if a game is running
+        isGameRunning: false
     };
 
     var noteFrequencies = {
@@ -390,32 +389,32 @@ Synth.loadSoundProfile({
     function nextRound() {
         feedbackDiv.innerHTML = '';
 
+        // Generate random interval
         var intervals = gameData.intervals;
         var intervalNames = Object.keys(intervals);
         var randomIntervalName = intervalNames[Math.floor(Math.random() * intervalNames.length)];
         var semitoneDistance = intervals[randomIntervalName];
 
-        var startNoteIndex = Math.floor(Math.random() * allNotes.length);
-        var startNote = allNotes[startNoteIndex];
+        var startNoteIndex, endNoteIndex;
 
-        var endNoteIndex;
-
-        if (gameData.difficulty === 'easy' || gameData.difficulty === 'medium') {
+        // Generate ascending interval for all difficulties
+        do {
+            // Randomly select a starting note index
+            startNoteIndex = Math.floor(Math.random() * allNotes.length);
             endNoteIndex = startNoteIndex + semitoneDistance;
-        } else {
-            if (Math.random() < 0.5) {
-                endNoteIndex = startNoteIndex + semitoneDistance;
-            } else {
-                endNoteIndex = startNoteIndex - semitoneDistance;
-            }
-        }
+        } while (endNoteIndex >= allNotes.length);
 
-        if (endNoteIndex < 0 || endNoteIndex >= allNotes.length) {
-            nextRound();
-            return;
-        }
-
+        // Get the start and end notes
+        var startNote = allNotes[startNoteIndex];
         var endNote = allNotes[endNoteIndex];
+
+        // For hard difficulty, swap notes with 50% probability
+        if (gameData.difficulty === 'hard' && Math.random() < 0.5) {
+            // Swap the notes to make the interval descending
+            var temp = startNote;
+            startNote = endNote;
+            endNote = temp;
+        }
 
         gameData.currentNotes = [startNote, endNote];
         gameData.currentInterval = semitoneDistance;
