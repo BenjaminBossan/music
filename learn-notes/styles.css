@@ -38,12 +38,12 @@ body {
     font-weight: bold;
 }
 
-.string[data-string="5"] { top: 10px; }
-.string[data-string="4"] { top: 28px; }
-.string[data-string="3"] { top: 46px; }
-.string[data-string="2"] { top: 64px; }
-.string[data-string="1"] { top: 82px; }
-.string[data-string="0"] { top: 100px; }
+.string[data-string="5"] { top: 5px; }
+.string[data-string="4"] { top: 23px; }
+.string[data-string="3"] { top: 33px; }
+.string[data-string="2"] { top: 51px; }
+.string[data-string="1"] { top: 69px; }
+.string[data-string="0"] { top: 87px; }
 
 .string-label[data-string="5"] { top: 1px; }
 .string-label[data-string="4"] { top: 19px; }

@@ -300,7 +300,7 @@ function onPianoKeyClick(e) {
     }
 }
 
-// Show a random note on the fretboard (frets 0 to 4 inclusive)
+// Show a random note on the fretboard
 function showRandomNote() {
     questionStartTime = Date.now();
     clearFretboardMarkers();
@@ -320,10 +320,12 @@ function showRandomNote() {
     marker.style.left = `${fretPosition}%`;
 
     if (randomFret === 0) {
-        marker.textContent = 'x';
+        marker.textContent = 'X';
         marker.style.left = '0%';
+        marker.style.top = '-6.5px';
     } else {
         marker.textContent = randomFret;
+        marker.style.top = '-10px';
     }
     stringDiv.appendChild(marker);
 
