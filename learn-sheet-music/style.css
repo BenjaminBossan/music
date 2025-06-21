@@ -1,0 +1,48 @@
+/* Basic page layout */
+body {
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin: 0;
+  background-color: #fafafa;
+}
+
+/* Controls (tempo input + buttons) */
+.controls {
+  margin-bottom: 20px;
+}
+
+.controls label {
+  font-size: 16px;
+  margin-right: 8px;
+}
+
+.controls input[type="number"] {
+  width: 60px;
+  font-size: 16px;
+  padding: 4px;
+  margin-right: 12px;
+}
+
+.controls button {
+  font-size: 16px;
+  padding: 6px 12px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+/* Container for the music notation */
+#music {
+  border: 1px solid #ddd;
+  background-color: #fff;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure the rendered SVG/canvas scales responsively */
+#music svg {
+  max-width: 100%;
+  height: auto;
+}
