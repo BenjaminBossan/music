@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Chord Inversion Identifier</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Chord Inversion Identifier</h1>
+
+<div class="home-button">
+    <a href="../index.html">Home</a>
+</div>
+
+<div id="container">
+    <div id="settings">
+        <details id="settings-details">
+            <summary>Settings</summary>
+            <div class="settings-body">
+                <fieldset>
+                    <legend>String Sets:</legend>
+                    <label><input type="checkbox" name="string-set" value="0" checked> Strings 6-5-4 (E-A-D)</label>
+                    <label><input type="checkbox" name="string-set" value="1" checked> Strings 5-4-3 (A-D-G)</label>
+                    <label><input type="checkbox" name="string-set" value="2" checked> Strings 4-3-2 (D-G-B)</label>
+                    <label><input type="checkbox" name="string-set" value="3" checked> Strings 3-2-1 (G-B-E)</label>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Chord Qualities:</legend>
+                    <label><input type="checkbox" id="include-major" checked> Major</label>
+                    <label><input type="checkbox" id="include-minor" checked> Minor</label>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Inversions:</legend>
+                    <label><input type="checkbox" name="inversion" value="root" checked> Root position</label>
+                    <label><input type="checkbox" name="inversion" value="first" checked> 1st inversion</label>
+                    <label><input type="checkbox" name="inversion" value="second" checked> 2nd inversion</label>
+                </fieldset>
+
+                <div class="input-group">
+                    <label for="rounds">Rounds:</label>
+                    <input type="number" id="rounds" value="10" min="1" max="100">
+                </div>
+
+                <div class="input-group">
+                    <label for="reveal-roles">
+                        <input type="checkbox" id="reveal-roles" checked>
+                        Reveal scale-degree colors after answering
+                    </label>
+                </div>
+            </div>
+        </details>
+
+        <button id="start-button">Start Game</button>
+    </div>
+
+    <div id="game" style="display: none;">
+        <div id="game-controls">
+            <button id="stop-button">Stop Game</button>
+            <button id="restart-button">Restart Game</button>
+        </div>
+
+        <div id="game-info">
+            <p>Time Elapsed: <span id="timer">0.00</span> seconds</p>
+            <p>Correct Answers: <span id="correct-answers">0</span> / <span id="total-rounds">10</span></p>
+        </div>
+
+        <div id="fretboard-container">
+            <div id="fretboard"></div>
+        </div>
+
+        <div id="feedback"></div>
+
+        <div id="answer-options"></div>
+
+        <div id="next-round-wrapper" style="display: none;">
+            <button id="next-button">Next</button>
+        </div>
+
+        <div id="legend" style="display: none;">
+            <span class="legend-item"><span class="dot legend-dot role-root"></span> Root</span>
+            <span class="legend-item"><span class="dot legend-dot role-third"></span> 3rd</span>
+            <span class="legend-item"><span class="dot legend-dot role-fifth"></span> 5th</span>
+        </div>
+
+        <div id="round-history">
+            <h3>Round History:</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Attempt</th>
+                        <th>Chord</th>
+                        <th>Notes (low → high)</th>
+                        <th>Your Choice</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody id="round-summary"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="results" style="display: none;">
+        <h2>Game Over!</h2>
+        <p>Total Time: <span id="total-time"></span> seconds</p>
+        <h3>Final Round Summary:</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Attempt</th>
+                    <th>String Set</th>
+                    <th>Your Choice</th>
+                    <th>Correct Answer</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody id="final-round-summary"></tbody>
+        </table>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,335 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+#settings, #game, #results {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+#settings-details > summary {
+    cursor: pointer;
+    font-weight: bold;
+    padding: 8px 10px;
+    background-color: #eee;
+    border-radius: 4px;
+    user-select: none;
+    list-style-position: inside;
+}
+
+#settings-details[open] > summary {
+    margin-bottom: 10px;
+}
+
+.settings-body {
+    padding: 0 5px;
+}
+
+#settings fieldset {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#settings legend {
+    padding: 0 5px;
+    font-weight: bold;
+}
+
+#settings label {
+    display: inline-block;
+    margin-right: 15px;
+    margin-bottom: 5px;
+}
+
+#settings .input-group {
+    margin-bottom: 10px;
+}
+
+#settings .input-group label {
+    margin-right: 10px;
+}
+
+#start-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+#next-round-wrapper {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#next-button {
+    padding: 10px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #1565c0;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#next-button:hover {
+    background-color: #0d47a1;
+}
+
+#game-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+#game-info {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+#fretboard-container {
+    position: relative;
+    margin: 30px auto 20px;
+    width: 600px;
+    height: 140px;
+    padding-left: 30px;
+    box-sizing: content-box;
+}
+
+#fretboard {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #f8e3b8;
+    border: 2px solid #5a3a14;
+    border-radius: 3px;
+}
+
+.string {
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background-color: #222;
+    pointer-events: none;
+    border-radius: 2px;
+}
+
+.string[data-string-idx="5"] { top: 17px; }
+.string[data-string-idx="4"] { top: 39px; }
+.string[data-string-idx="3"] { top: 61px; }
+.string[data-string-idx="2"] { top: 83px; }
+.string[data-string-idx="1"] { top: 105px; }
+.string[data-string-idx="0"] { top: 127px; }
+
+.string-label {
+    position: absolute;
+    left: -25px;
+    width: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+}
+
+.string-label[data-string-idx="5"] { top: 9px; }
+.string-label[data-string-idx="4"] { top: 31px; }
+.string-label[data-string-idx="3"] { top: 53px; }
+.string-label[data-string-idx="2"] { top: 75px; }
+.string-label[data-string-idx="1"] { top: 97px; }
+.string-label[data-string-idx="0"] { top: 119px; }
+
+.fret-line {
+    position: absolute;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background-color: #888;
+}
+
+.fret-line.nut {
+    width: 4px;
+    background-color: #222;
+}
+
+.dot {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: #333;
+    border: 2px solid #111;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+.dot[data-string-idx="5"] { top: 19px; }
+.dot[data-string-idx="4"] { top: 41px; }
+.dot[data-string-idx="3"] { top: 63px; }
+.dot[data-string-idx="2"] { top: 85px; }
+.dot[data-string-idx="1"] { top: 107px; }
+.dot[data-string-idx="0"] { top: 129px; }
+
+.dot.role-root {
+    background-color: #2e7d32;
+    border-color: #1b5e20;
+}
+
+.dot.role-third {
+    background-color: #1565c0;
+    border-color: #0d47a1;
+}
+
+.dot.role-fifth {
+    background-color: #c62828;
+    border-color: #b71c1c;
+}
+
+#legend {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.legend-item {
+    margin: 0 10px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.legend-dot {
+    position: static;
+    display: inline-block;
+    transform: none;
+    width: 14px;
+    height: 14px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+#feedback {
+    min-height: 28px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#feedback.correct {
+    color: green;
+}
+
+#feedback.incorrect {
+    color: red;
+}
+
+#answer-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#answer-options button {
+    margin: 5px;
+    padding: 10px;
+    flex: 1 1 calc(33% - 10px);
+    max-width: calc(33% - 10px);
+    font-size: 15px;
+}
+
+#answer-options button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+#answer-options button.choice-correct {
+    background-color: #d4edda;
+    border-color: #28a745;
+}
+
+#answer-options button.choice-incorrect {
+    background-color: #f8d7da;
+    border-color: #dc3545;
+}
+
+#round-history {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table, th, td {
+    border: 1px solid #cccccc;
+}
+
+th, td {
+    padding: 8px;
+    text-align: center;
+}
+
+.row-correct {
+    background-color: #d4edda;
+}
+
+.row-incorrect {
+    background-color: #f8d7da;
+}
+
+.home-button {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.home-button a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #fff;
+    background-color: #888;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.home-button a:hover {
+    background-color: #666;
+}
+
+@media screen and (max-width: 700px) {
+    #fretboard-container {
+        width: calc(100% - 40px);
+    }
+
+    #answer-options button {
+        flex: 1 1 calc(50% - 10px);
+        max-width: calc(50% - 10px);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #answer-options button {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
