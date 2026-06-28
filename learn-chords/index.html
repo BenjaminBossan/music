@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guitar Chord Trainer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Guitar Chord Trainer</h1>
+
+    <div class="home-button">
+        <a href="../index.html">Home</a>
+    </div>
+
+    <main id="container">
+        <section id="setup">
+            <p id="status">Set a round count, press Start, and allow microphone access.</p>
+            <div id="settings-row">
+                <div class="setting-field">
+                    <label for="round-count">Rounds</label>
+                    <input id="round-count" type="number" value="10" min="1" max="100">
+                </div>
+                <div class="setting-field threshold-field">
+                    <label for="confidence-threshold">Detection threshold <span id="threshold-value">70%</span> <span class="help-tip" tabindex="0" aria-label="Higher thresholds reduce false positives but require a clearer, louder chord. Lower thresholds react faster but may accept more wrong chords.">?</span></label>
+                    <input id="confidence-threshold" type="range" value="0.70" min="0.45" max="0.85" step="0.01">
+                </div>
+            </div>
+            <div id="controls">
+                <button id="start-button">Start</button>
+                <button id="pause-button" disabled>Pause</button>
+                <button id="stop-button" disabled>Stop</button>
+            </div>
+        </section>
+
+        <section id="trainer" aria-live="polite">
+            <div id="stats">
+                <div>
+                    <span class="label">Scale</span>
+                    <span id="scale-name">-</span>
+                </div>
+                <div>
+                    <span class="label">Time</span>
+                    <span id="timer">0.0s</span>
+                </div>
+                <div>
+                    <span class="label">Round</span>
+                    <span id="round-progress">0 / 10</span>
+                </div>
+                <div>
+                    <span class="label">Attempts</span>
+                    <span id="attempt-count">0</span>
+                </div>
+            </div>
+
+            <div id="challenge-card">
+                <span class="label">Play</span>
+                <div id="target-chord">-</div>
+                <div id="target-function">-</div>
+                <div id="transition-indicator" hidden>
+                    <span class="spinner" aria-hidden="true"></span>
+                    <span>Mute strings...</span>
+                </div>
+            </div>
+
+            <div id="detector">
+                <span class="label">Detected</span>
+                <div id="detected-chord">Listening stopped</div>
+                <meter id="confidence-meter" min="0" max="1" value="0"></meter>
+                <div id="confidence-text">Dormant until the guitar is loud enough</div>
+            </div>
+
+            <div id="feedback"></div>
+        </section>
+
+        <section id="history-section">
+            <h2>Chord Log</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Scale</th>
+                        <th>Function</th>
+                        <th>Chord</th>
+                        <th>Attempts</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody id="history-body">
+                    <tr>
+                        <td colspan="6">No completed chords yet.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="results" hidden>
+            <h2>Game Over</h2>
+            <p>Total time: <strong id="result-time">0.0s</strong></p>
+            <p>Scale: <strong id="result-scale">-</strong></p>
+            <p>Completed rounds: <strong id="result-rounds">0</strong></p>
+            <p>Total attempts: <strong id="result-attempts">0</strong></p>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
